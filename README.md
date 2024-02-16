@@ -88,9 +88,42 @@ r0 ~ r7
 ## Apple M1, MacOS ARM64
 
 ```bash
+# check mac versions
+sw_vers
+
+cat /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/ syscall.h
+
+# e.g. (1) : as command -> macOS LLVM Clang Assembler link
 as -o demo.o demo.s
 
+# (1 - 2)
+as -arch arm64 -o demo.o demo.s
+
+# (1 - 3) : ld command -> object file convert to bin file
 ld -macosx_version_min 14.0.0 -o demo demo.o -lSystem -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _start -arch arm64
 
+#-> lSystem : 표준 라이브러리 libSystem.dylib link
+#-> syslibroot : libSystem.dylib file path
+#-> -e _start : Entry point
+#-> -arch arm64 : m1 용으로 변경
+
+
+# (1 - 4) run test
 ./demo
+
+# e.g. (2)
+gcc hello_arm.s -o hello_arm
+./hello_arm
+
+# e.g. (3)
+clang hello.c -o hello
+
 ```
+
+## DisAssemble
+
+`objdump -D demo`
+
+## Compile Process
+
+>- hello.c >- (compile) >- hello.o >- link >- hello
