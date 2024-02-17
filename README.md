@@ -127,3 +127,14 @@ clang hello.c -o hello
 ## Compile Process
 
 >- hello.c >- (compile) >- hello.o >- link >- hello
+
+## CPSR
+
+>- N : 마이너스
+>- Z : 0
+>- C :
+>- V :
+
+- Rd : destination register
+- Rn : first
+- Rm : second
