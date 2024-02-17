@@ -138,3 +138,16 @@ clang hello.c -o hello
 - Rd : destination register
 - Rn : first
 - Rm : second
+
+## Makefile (C Project)
+
+- TARGET : Dependency
+
+>- command
+>- Source (.c) -> Object(.o) -> excute file (.out)
+
+```bash
+
+clang CalculateApp.c -o ./Bin/Calculate
+
+```
