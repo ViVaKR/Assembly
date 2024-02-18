@@ -6,10 +6,9 @@ int main(void) {
     printf("Input 3 char\n");
 
     scanf("%c", &a);
-    fflush(stdin);
-    scanf("%c", &b);
-    fflush(stdin);
-    scanf("%c", &c);
+
+    scanf(" %c", &b);
+    scanf(" %c", &c);
 
     printf("Input Data is : %d - %d - %d\n", a, b, c);
 }
