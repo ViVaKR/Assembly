@@ -151,3 +151,52 @@ clang hello.c -o hello
 clang CalculateApp.c -o ./Bin/Calculate
 
 ```
+
+## General Purpose Registers
+
+- X0 ~ X7 : Parameter / Result Registers
+- X8 : Indirect Result Location Register
+- X9 ~ X15 : Temporary Registers
+- X16 : IP0
+- X17 : IP1
+- X18 : PR(Platform Register)
+- X19 ~ X28 : Calle-Saved Registers
+- X29 : FP (Frame Pointer) :
+  >- Points to the stack base during a function call, to recover stack from the calling function.(함수 호출 중에 스택 베이스를 가리켜 호출 함수에서 스택을 복구)
+- X30 : LR (Link Register) : Saves the return address at a function call.
+
+## Special Registers
+
+- SP (Stack Pointer) : Points to dynamic memory available during program excution.
+- NZCV (Global Condition Flag Register)
+- FPSR (Floating Point Status Register)
+- FPSR (Floating Point Status Register)
+- FPCR (Floating Point Control Register)
+- PC (Program Counter) : Contains Address of the next instruction to be executed.
+- XZR (Zero Register (Abastract))
+
+## Floating Point & SIMD Registers
+
+- D0 ~ D7 : Argument / Result Value Registers
+- D8 ~ D15 : To be Preserved Across Calls
+- D16 ~ D31 : Temporary Registers
+
+>- Code must be aligned to 4-byte boundary
+>- Their lower 32 bits can be addressed by the names W0 to W30
+
+## Stack
+
+1. 함수 내의 로컬 변수임시 저장
+2. 함수 호출 시 파라미터 전달
+3. 복귀 주소 저장
+4. FILO (First In Last Out)
+
+
+```bash
+  # Ubuntu nasm
+  >- sudo apt-get install nasm
+
+  # 64 bit
+  >- nasm -f elf64 file.asm -o file.o
+  >- ld file.o -o file
+```
