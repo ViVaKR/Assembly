@@ -191,12 +191,12 @@ clang CalculateApp.c -o ./Bin/Calculate
 3. 복귀 주소 저장
 4. FILO (First In Last Out)
 
-
 ```bash
-  # Ubuntu nasm
+
+## Ubuntu nasm
   >- sudo apt-get install nasm
 
-  # 64 bit
+## 64 bit
   >- nasm -f elf64 file.asm -o file.o
   >- ld file.o -o file
 ```

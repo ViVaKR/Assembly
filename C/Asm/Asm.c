@@ -8,6 +8,7 @@ int main(void) {
     scanf("%c", &a);
 
     scanf(" %c", &b);
+
     scanf(" %c", &c);
 
     printf("Input Data is : %d - %d - %d\n", a, b, c);
