@@ -1,6 +1,6 @@
 ﻿
 .global _main
-.p2align 2
+.align 2
 
 _main:
     adr x0, msg

@@ -1,8 +1,5 @@
-//
-// Print Hello World
-//
 // X0 - X2 : Parametes to Unix System Calls
-// X16 : Mach System Call function number
+// X16 : System Call function number
 
 .global _start
 .p2align 4              // Make sure everything is aligned properly

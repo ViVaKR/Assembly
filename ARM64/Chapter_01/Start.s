@@ -1,11 +1,6 @@
-//
-// Hello World
-//
-
 .global _start
 .p2align 3
 
-// start
 _start:
     b _printf
     b _terminate
