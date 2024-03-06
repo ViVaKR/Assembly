@@ -291,3 +291,137 @@ _start:
 - STORE r3, 0x30 // r3 에 저장된 값을 0x30 번지에 저장
 
 ---
+
+## ARM64
+
+R1 ~ R7     : Low
+R8 ~ R12    : High
+
+R13 (SP)
+R14 (LR)
+R15 (PC)
+xPSR : Program Status Register
+
+0x0000_0000
+0xFFFF_FFFF
+
+LDR Rn, [Rn]  # dest <- source
+STR Rn, [Rn]  # source -> dest
+-> Square Bracket : Address
+
+```armasm
+-----------------------------------------------------------
+LDR R3, [R0] # [00 00 00 08] <- [08 00 00 00] 4bytes (word)
+LDR R4, [R1] # [00 00 00 04] <- [04 00 00 00]
+-----------------------------------------------------------
+
+Register            Memoery
+R0 - 00 00 00 10    0x0000
+R1 - 00 00 00 14    0x0004
+R2                  0x0008
+R3 - 00 00 00 08    0x000C
+R4 - 00 00 00 04    0x0010 - 08 00 00 00
+R5                  0x0014 - 04 00 00 00
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+STR R3, [R4] # [00 00 00 08] -> [08 00 00 00]
+-----------------------------------------------------------
+
+(1)
+LDR R0, = 0x0000 0010
+ADDR EQU 0x0000 00014
+LDR R1, = ADDR
+
+(2)
+MOV R0, #0x0010  // hash 즉시값
+
+(3)
+MOV R3, #0x2000  // R3에 즉시값 0x2000 을  저장
+STR R0, [R3]     // R0의 값을 R3에 기록된 메모리 주소에 저장
+
+-----------------------------------------------------------
+
+ADD  R0, R1, R2
+R0 - 00 00 00 24
+R1 - 00 00 00 14
+R2 - 00 00 00 10
+    0x14
+ +  0x10
+ =  0x24
+
+# 음수에서 양수로 (음수중 가장 큰수가 -1 임에 주의)
+... FFFB -> FFFC -> FFFD -> FFFE -> FFFF -> 0000 -> 0001 -> 0002 ...
+
+LDR R0, = 0x8000    // Save address to R0 value 8000
+LDR R1, [R0]        // Get value from 8000
+ADD R0, R0, #4      // Address : 8004
+LDR R2, [R0]        // Get Value from 8004
+ADD R3, R1, R2      // R3 = R1 + R2
+LDR R0, = 0x9000    // Save address to R0 value 9000
+STR R3, [R0]        // Save stored value at R3 to address 9000
+--------------------------------------------------------------------------------------
+## Addressing Mode ##
+- (1) PreIndex Addressing with offset
+- (2) Register Indirect Addressing
+
+e.g.
+x = a + b - c
+    0x2000 + 0x2004 - ox2008
+    R0       R1       R2
+
+(direct addressing)
+LDR R4, = 0x2000    // R4 를 메모리 주소 포인터로 사용 (address pointer)
+LDR R0, [ R4 ]      // R0 에 값 a를 저장
+LDR R4, = 0x2004    // R4 에 두번째 인수의 b 값이 저장된 메모리 주소 저장 (address pointer)
+LDR R1, [ R4 ]      // R4 에 저장된 메모리 주소 포인터 b 값을 R1 에 저장
+LDR R4, =0x2008     // R4 에 세번째 인수인 c 값이 저장된 메모리 주소 로드  (address pointer)
+LDR R2, [ R4 ]      // R4 에 저장된 메모리 주소 포인터 c 값을 R2 에 저장
+ADD R0, R0, R1      // R0 = R0 + R1 (a + b)
+SUB R0, R0, R2      // R0 = R0 - R2 ((a + b) - c) -> x
+LDR R4, =0x200A     // 최종값을 저장할 메모리 주소를 R4에 즉시값으로 저장 : 200A (address pointer)
+STR R0, [ R4 ]      // x값을 R4에 저장된 메모리 주소로 저장 내보내기
+
+(offset addressing)
+LDR R4, = 0x2000     // Never Changes
+LDR R0, [R4]
+LDR R1, [R4, #4]     // Address = R4 + #4 -> 0x2004
+LDR R2, [R4, #8]     // Address = R4 + #8 -> 0x2008
+ADD R0, R0, R1
+SUB R0, R0, R2
+STR R0, [ R4, #0xA ] // Address = 0x200A
+
+(Pre Index Addressing with register offset)
+LDR R1, [ R4, R5 ]   // R5 : Register Offset
+
+--------------------------------------------------------------------------------------
+
+## LOOP ##
+
+---------------------------
+int a = 0;
+for ( i = 0; i < 30; i++ )
+{
+    a = a + 1;
+}
+a => 30
+---------------------------
+1. Compare
+2. Branch  (Condition)
+
+PC - Program Counter
+
+LDR R3, 0x0000      // Start, i = 0
+LDR R2, 0x0000      // a = 0
+
+(AGAIN, Branch)
+ADD R2, R2, #1      // (AGAIN) a = a + 1
+ADD R3, R3, #1      // i++
+CMP R3, #30         // Compare,
+
+BLT AGAIN                // Branch (LT:Less Than),  i < 30
+
+
+
+
+```
