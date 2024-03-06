@@ -222,7 +222,7 @@ _start:
 
 ```
 
-/\*
+---
 
 - ALU (Arithmetic Logic Unit)
 - Control Unit
@@ -236,32 +236,30 @@ _start:
 - R5 : SP (Stack Pointer)
 - R6 : IR (Link Register)
 - R7 : PC (Program Counter)
--
--
-- ***
+
 - Bus Interface
 - I/O BUS
 - <fetch>
 - Memory
--
+
 - R0 ~ R3 : 연산할 값들을 담아 놓거나 혹은 ALU 에서 연산한 결과값을 담아 놓을 용도.
 - R4 : 들어온 명령어를 담아놓는 레지스터 (e.g. ADD R3, R1, R2 -> R1 과 R2를 연산한 값을 R3에 담아라)
 - R5 : 스택 포인터로 다음 명령어 처리에 필요한 가용 스택 주소를 가르킴, 스택을 반환하고 나면 FP의 주소롤 돌아감
 - R6 : Link Register 는 FP (Frame Pointer) 레지스터, 함수가 종료된 후 스택에 담긴 데이터를 반환할 때 돌아갈 스택의 위치를 저장
 - R7 : Program Counter 로 다음 명령어가 실행될 주소를 담아 놓는 레지스터.
--
+
 - PUSH : 명령어는 데이터를 스택에 넣고자 할 때 사용함.
 - -> PUSH 0x02 --- 현재 SP 값을 참조하여 데이터 0x02 를 해당 위치에 저장
 - -> PUSH R1 --- 현재 SP 값을 참조해서 레지스터 R1 값ㅇ르 해당 위치에 저장
--
+
 - POP : 스택에 가장 마지막에 들어간 데이터를 꺼내기 위해서 사용함.
 - SP 레지스터에 저장된 값을 감소시킴
 - POP 은 피연산자가 불필요하고 단순히 POP 형태로 명령어를 사용함.
 - -> ADD SP, SP, -4 --- 현재 SP 값에 -4를 더하여 SP 에 저장
 - -> SUB SP, SP, 4 --- 현재 SP 값에 4를 빼서 SP 에 저장
--
--
--
+
+---
+
 - ADD : 덧셈
 - SUB : 뺄셈
 - MUL : 곱셈
@@ -291,4 +289,5 @@ _start:
 - LOAD r2, 0x20 // 0x20 번지에 저장된 데이터를 r2 로 이동
 - ADD r3, r1, r2 // r1, r2 에 저장된 값을 더해서 r3 에 결과 저장
 - STORE r3, 0x30 // r3 에 저장된 값을 0x30 번지에 저장
-- \*/
+
+---
