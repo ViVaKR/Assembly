@@ -1,0 +1,49 @@
+- y 대신 삭제 관련 명령을 활용하여 지워진 내용이 클립보드에 복사되도록 할 수도 있다
+
+Hello, World
+
+CLion 
+Smart Keys Jump outside closing bracke/auote with Tab not working
+
+SiegeTank
+
+Lurker
+- Health
+- Power
+- Position
+- State
+
+
+Zergling
+- Health
+- Power
+- Position
+- State
+
+clang++ -S -mllvm --x86-asm-syntax=intel test.cpp
+
+
+clang -S -arch arm64
+
+clang -o myTool-x86_64 -mmacosx-version-min=10.15 -arch x86_64 main.c
+
+clang -S -o stack.s -mmacosx-version-min=10.15 -arch arm64 stack.c
+
+함수는 선택적으로 표현식으로 끝나는 일련의 문장으로 구성되어 있다.
+러스트는 표현 기반 언어
+
+- statement (구문, 명령문) : 일부 작업을 수행하고 값을 반환하지 않는다. (let y = 6 ), 
+함수의 정의도 구문이다.
+다른 변수에 할당할 수 없음
+다른 언어는 할당이 할당값을 반환하는 다른 언어와 다른점이 다. (x = y = 6, Rust 에서는 안됨)
+
+- express (표현) : 결과 값으로 평가됨
+함수를 호출하는 것은 표현식
+중괄호로 만든 새 범위 블록은 표현식임
+
+
+
+
+
+
+
