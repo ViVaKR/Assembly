@@ -16,8 +16,6 @@
 
 ## 레지스터
 
->
-
 - 32비트 : `E` 로 시작
 - 64비트 : `R` 로 시작
 
@@ -71,7 +69,6 @@
 
 > - read(`operator`) data(`operand`)
 > - 대소문자 구분이 없이
-
 > - r0 ~ r7
 
 - ir : return pointer, 함수가 반환되는 위치
@@ -226,8 +223,7 @@ _start:
 
 - ALU (Arithmetic Logic Unit)
 - Control Unit
-- IR Register :
-- ***
+- IR Register
 - R0
 - R1
 - R2
@@ -420,8 +416,5 @@ ADD R3, R3, #1      // i++
 CMP R3, #30         // Compare,
 
 BLT AGAIN                // Branch (LT:Less Than),  i < 30
-
-
-
 
 ```
