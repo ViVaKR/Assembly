@@ -99,29 +99,32 @@
 as -arch arm64 -o demo.o demo.s
 
 # (1 - 3) : ld command -> object file convert to bin file
+```bash
 ld -macosx_version_min 14.0.0 -o demo demo.o -lSystem -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _start -arch arm64
 
-#-> lSystem : 표준 라이브러리 libSystem.dylib link
-#-> syslibroot : libSystem.dylib file path
-#-> -e _start : Entry point
-#-> -arch arm64
+# -> lSystem : 표준 라이브러리 libSystem.dylib link
 
+# -> syslibroot : libSystem.dylib file path
+
+# -> -e _start : Entry point
+
+# -> -arch arm64
 
 # (1 - 4) run test
-./demo
 
-# e.g. (2)
 gcc hello_arm.s -o hello_arm
 ./hello_arm
 
-# e.g. (3)
-#-> execute file
+- execute file
+
 clang hello.c -o hello
 
-#-> create assembly file : -S - Create Assembly
+- create assembly file : -S - Create Assembly
+
 clang hello.c -S -o hello.a
 
-#-> create object file
+- create object file
+
 clang hello.c -c -o hello.o
 ld helloworld.o -o helloworld -l System -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _main -arch arm64
 
@@ -130,6 +133,53 @@ ld helloworld.o -o helloworld -l System -syslibroot `xcrun -sdk macosx --show-sd
 ## DisAssemble
 
 `objdump -D demo`
+
+## LLDB Commands
+
+```bash
+
+; disassemble ;
+; lldb hello
+; disassemble --name start
+(lldb) run
+(lldb) r
+(lldb) run : 현재 프로그램을 중단하고 새로운 Biild/Run 을 진행
+(lldb) continue : 다음 Breakpoint 가 나타날때 까지 프로그램을 진행함.
+(lldb) po (expression -O --): 객체에 대한 다양한 정보를 콘솔에 출력, -O (object 의 description)
+(lldb) memory read -fx -c4 -s4 $address
+
+- -f : display format
+- -s : size of the data
+- -c : count
+
+help breakpoint
+help breakpoint set
+(lldb) apropos "reference count"
+
+Stepping Over (n)ext : next 현재 Break 걸려 있는 지점에서 바로 다음 Statement 로 이동.
+Stepping In (s)tep : Statement 가 Function Call 인 경우 Debugger 를 해당 함수 내부에 위치한 시작 지점으로 이동하게 해줌.
+Steppint Out ( : 현재 진행중인 function return 될때 까지 프로그램을 진행한 후 프로그램 Break 걸어 주는 Stepping Action -> Stack Frame Pop
+
+
+expr int $num = 10
+expr int $num = 34;
+po $num + 19;
+
+image list
+
+function
+image lookup -F "func name"
+
+file name
+image lookup -f "main.c"
+
+memory address
+image lookup -a "0xooaddress"
+
+line number
+image lookup -f "main.c" 15
+
+```
 
 ## Compile Process
 
