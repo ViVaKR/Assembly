@@ -1,16 +1,17 @@
 # NASM
 
 ## Compile
+
 ```bash
 
 - Compile
 $ nasm -f elf64 -o hello.o hello.asm
 
-- Load 
+- Load
 $ ld hello.o -o hello
 $ ld -m elf_i386 -o hello hello.o # 32bit
 
-- Run 
+- Run
 $ ./hello
 
 - Check
@@ -20,6 +21,7 @@ $ echo $? #=> return 1; return ebx value,
 # 10 - newline character, as "\n"
 # text - A name assigned to the address in memory that this data is located in.
 ```
+
 - x86 32-bit processor, each register is 32 bits in size
 
 - 32 bit
@@ -33,19 +35,19 @@ EDI : High speed memroy transfer
 EBP : Used to reference functionparameters and local variables ont the stack
 ESP : A pointer to the current stack address
 
-EIP : The instruction pointer, points to the address of the next instruction. 
- 
-EFLAGS : Flags to denote the status of an operation.
-* CF (carry flag)
-* OF (overflow flag)
-* SF (sign flag)
-* ZF (zero flag)
-* AC (auxiliary cary)
-* PF (parity flag)
+EIP : The instruction pointer, points to the address of the next instruction.
 
-- 16 bit 
-AX : 
-BX : 
+EFLAGS : Flags to denote the status of an operation.
+- CF (carry flag)
+- OF (overflow flag)
+- SF (sign flag)
+- ZF (zero flag)
+- AC (auxiliary cary)
+- PF (parity flag)
+
+- 16 bit
+AX :
+BX :
 CX
 DX
 
@@ -61,9 +63,8 @@ BL
 CL
 DL
 
- 
-  
---------------------------------------------   
+--------------------------------------------
+
 ## start.asm
 
 section .data
@@ -74,15 +75,14 @@ _start:
 	mov eax, 1 ; 종료코드
 	mov ebx, 123 ; 상태코드
 	int 80h ; h = hex
-	 
+
 --------------------------------------------
 
 ## data.asm ##
 
-(gdb) x/x $ebx  # 해당 주소의 값을 가져오기 
+(gdb) x/x $ebx  # 해당 주소의 값을 가져오기
 
- 
-#-> list DB 1,2,3,4  
+# -> list DB 1,2,3,4
 (gdb) x/x 0x804a000
-0x804a000:      0x04030201 
+0x804a000:      0x04030201
 --------------------------------------------
