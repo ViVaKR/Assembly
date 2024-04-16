@@ -1,29 +1,36 @@
 # ARM (Advanced RISC Machine)
 
-/**
-* ARM architecture *
+## Assembly file
 
-* Every instruction endocing is 32 bit wide.
-* Code must be aligned to 4-byte boundary
-* ARM64 has 31 general `purpose register`, named X0 to X30
-* Their lower 32 bits can be addressed by the names W0 to W30.
+>- `*.s` : assemble `as`, link `ld`
 
-* Special Registers:
-    * Program  count (PC)       : contains address of the next instruction to be excuted.
-    * Stact pointer (SP)        : points to dynamic memory available during program execution.
-    * Frame pointer (FP, X29)   : points to the stack base during a function call, to recover stack from the calling function.
-    * Link register (LR, X30)   : saves the return address at a function call.
-    * Zero register (XZR)       : always contains the value zero.
-    * Specifically on macOS     : X18 is reserved (do not use it)
-* Instruction set comprises the ususl arithemetic, logical and branching operations. (산술, 논리, 분기)
-* Level of privilege
+```bash
+as program.s -o program.o
+ld program.o -o program
+```
+
+## ARM architecture
+
+- Every instruction endocing is 32 bit wide.
+- Code must be aligned to 4-byte boundary
+- ARM64 has 31 general `purpose register`, named X0 to X30
+- Their lower 32 bits can be addressed by the names W0 to W30.
+
+- Special Registers:
+    - Program  count (PC)       : contains address of the next instruction to be excuted.
+    - Stact pointer (SP)        : points to dynamic memory available during program execution.
+    - Frame pointer (FP, X29)   : points to the stack base during a function call, to recover stack from the calling function.
+    - Link register (LR, X30)   : saves the return address at a function call.
+    - Zero register (XZR)       : always contains the value zero.
+    - Specifically on macOS     : X18 is reserved (do not use it)
+- Instruction set comprises the ususl arithemetic, logical and branching operations. (산술, 논리, 분기)
+- Level of privilege
     -> User mode (USR)          : least privileges, standard for program execution.
     -> Supervisor mode (SVC)    : kernel level privileges.
 
-* Assumin you installed Xcode (with the Apple Developer Tools)
-* assembler is invoked by -> $ as hello.asm -o hello.o
-    * This produces the binary code for our assembler program.
-*/
+- Assumin you installed Xcode (with the Apple Developer Tools)
+- assembler is invoked by -> $ as hello.asm -o hello.o
+    - This produces the binary code for our assembler program.
 
 ## Operate
 

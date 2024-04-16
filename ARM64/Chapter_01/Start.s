@@ -57,3 +57,5 @@ helloworld: .ascii "Hello, World\n"     // 13 char
 // >- Target (대상)
 // >- Recipes (실행할 명령어들)
 // >- PreRequisites (Dependency, 사전에 필요한 것들)
+
+// x/16xw

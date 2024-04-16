@@ -1,24 +1,3 @@
-- y 대신 삭제 관련 명령을 활용하여 지워진 내용이 클립보드에 복사되도록 할 수도 있다
-
-Hello, World
-
-CLion
-Smart Keys Jump outside closing bracke/auote with Tab not working
-
-SiegeTank
-
-Lurker
-- Health
-- Power
-- Position
-- State
-
-
-Zergling
-- Health
-- Power
-- Position
-- State
 
 ```bash
 clang++ -S -m llvm --x86-asm-syntax=intel test.cpp

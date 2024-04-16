@@ -1,8 +1,8 @@
 ﻿
-.global _main
-.align 2
+.global _start
+.align 4
 
-_main:
+_start:
     adr x0, msg
     bl _puts
     mov x0, #42
