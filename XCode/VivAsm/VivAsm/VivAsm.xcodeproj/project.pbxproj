@@ -6,10 +6,15 @@
 	objectVersion = 56;
 	objects = {
 
+/* Begin PBXFileReference section */
+		C21233DB2BD1921B0006FD9C /* Start.s */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm; path = Start.s; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		C21233D02BD191B40006FD9C = {
 			isa = PBXGroup;
 			children = (
+				C21233DB2BD1921B0006FD9C /* Start.s */,
 			);
 			sourceTree = "<group>";
 		};
@@ -18,11 +23,12 @@
 /* Begin PBXLegacyTarget section */
 		C21233D52BD191B40006FD9C /* VivAsm */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
+			buildArgumentsString = "$(ACTION) ";
 			buildConfigurationList = C21233D82BD191B40006FD9C /* Build configuration list for PBXLegacyTarget "VivAsm" */;
 			buildPhases = (
 			);
-			buildToolPath = /usr/bin/make;
+			buildToolPath = /usr/bin/as;
+			buildWorkingDirectory = /Users/vivakr/GitWorkspace/Assembly/XCode/VivAsm/VivAsm;
 			dependencies = (
 			);
 			name = VivAsm;
