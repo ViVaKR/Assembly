@@ -1,5 +1,5 @@
 section .data
-
+	
 section .text
 
 global _start
@@ -9,5 +9,3 @@ _start:
 	mov ebx, 123 ; 상태코드
 	int 80h ; h = hex
 	 
-	 
-	
