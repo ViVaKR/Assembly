@@ -74,18 +74,8 @@ i386
  *
  */
 
-
-
 ```bash
 dpkg --print-architecture
 uname -m  : machine hardware name for ex, x86_64
 uname -a  : stands for all (machine hardware name, processor type, hardware platform
 ```
-
-
-
-
-
-
-
-

@@ -269,8 +269,6 @@ _start:
 
 ```
 
----
-
 - ALU (Arithmetic Logic Unit)
 - Control Unit
 - IR Register

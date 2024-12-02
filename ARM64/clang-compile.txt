@@ -17,10 +17,3 @@ clang -S -o stack.s -mmacosx-version-min=10.15 -arch arm64 stack.c
 - express (표현) : 결과 값으로 평가됨
 함수를 호출하는 것은 표현식
 중괄호로 만든 새 범위 블록은 표현식임
-
-
-
-
-
-
-
