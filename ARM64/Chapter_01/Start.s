@@ -1,5 +1,5 @@
 .global _start
-.p2align 3
+.p2align 6
 
 _start:
     b _printf
