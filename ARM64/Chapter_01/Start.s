@@ -1,5 +1,5 @@
 .global _start
-.p2align 6
+.p2align 2
 
 _start:
     b _printf
@@ -24,12 +24,6 @@ _terminate:
 
 // hello world string
 helloworld: .ascii "Hello, World\n"     // 13 char
-
-
-// Commands (in terminal)
-// -> $ as hello.s -o hello.o
-// -> $ ld hello.o -o hello -l System -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _main -arch arm64
-// -> $ ld hello.o -o hello -l System -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _start -arch arm64
 
 //    SVC
 //    Supervisor Call

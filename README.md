@@ -158,7 +158,7 @@ help breakpoint set
 
 Stepping Over (n)ext : next 현재 Break 걸려 있는 지점에서 바로 다음 Statement 로 이동.
 Stepping In (s)tep : Statement 가 Function Call 인 경우 Debugger 를 해당 함수 내부에 위치한 시작 지점으로 이동하게 해줌.
-Steppint Out ( : 현재 진행중인 function return 될때 까지 프로그램을 진행한 후 프로그램 Break 걸어 주는 Stepping Action -> Stack Frame Pop
+Steppint Out : 현재 진행중인 function return 될때 까지 프로그램을 진행한 후 프로그램 Break 걸어 주는 Stepping Action -> Stack Frame Pop
 
 
 expr int $num = 10
@@ -177,7 +177,7 @@ memory address
 image lookup -a "0xooaddress"
 
 line number
-image lookup -f "main.c" 15
+image lookup -f "main.c"
 
 ```
 
@@ -283,7 +283,7 @@ _start:
 
 - Bus Interface
 - I/O BUS
-- <fetch>
+
 - Memory
 
 - R0 ~ R3 : 연산할 값들을 담아 놓거나 혹은 ALU 에서 연산한 결과값을 담아 놓을 용도.

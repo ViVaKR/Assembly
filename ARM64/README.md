@@ -2,11 +2,21 @@
 
 ## Assembly file
 
->- `*.s` : assemble `as`, link `ld`
 
 ```bash
-as program.s -o program.o
-ld program.o -o program
+
+# 진입점이 `-start` 인경우 링커 옵션 전달
+# `-Wl,-e,_start` : 링커 (ld)에 진입점을 _start 로 변경하라는 옵션 (-e _start)을 넘김
+clang hello.s -o hello -Wl,-e,_start -nostartfiles
+
+# 진입점이 `_main` 인 경우
+clang hello.s -o hello
+clang -arch arm64 hello.s -o hello
+
+# `*.s` : assemble `as`, link `ld`
+as hello.s -o hello.o
+ld hello.o -o hello -l System -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _main -arch arm64
+ld hello.o -o hello -l System -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _start -arch arm64
 ```
 
 ## ARM architecture
@@ -17,12 +27,12 @@ ld program.o -o program
 - Their lower 32 bits can be addressed by the names W0 to W30.
 
 - Special Registers:
-    - Program  count (PC)       : contains address of the next instruction to be excuted.
-    - Stact pointer (SP)        : points to dynamic memory available during program execution.
-    - Frame pointer (FP, X29)   : points to the stack base during a function call, to recover stack from the calling function.
-    - Link register (LR, X30)   : saves the return address at a function call.
-    - Zero register (XZR)       : always contains the value zero.
-    - Specifically on macOS     : X18 is reserved (do not use it)
+  - Program  count (PC)       : contains address of the next instruction to be excuted.
+  - Stact pointer (SP)        : points to dynamic memory available during program execution.
+  - Frame pointer (FP, X29)   : points to the stack base during a function call, to recover stack from the calling function.
+  - Link register (LR, X30)   : saves the return address at a function call.
+  - Zero register (XZR)       : always contains the value zero.
+  - Specifically on macOS     : X18 is reserved (do not use it)
 - Instruction set comprises the ususl arithemetic, logical and branching operations. (산술, 논리, 분기)
 - Level of privilege
     -> User mode (USR)          : least privileges, standard for program execution.
@@ -30,9 +40,9 @@ ld program.o -o program
 
 - Assumin you installed Xcode (with the Apple Developer Tools)
 - assembler is invoked by -> $ as hello.asm -o hello.o
-    - This produces the binary code for our assembler program.
+  - This produces the binary code for our assembler program.
 
-## Operate
+## 
 
 ```c
 
@@ -42,7 +52,7 @@ ldr X0, [X1] ; Load, where X1 contains the memory address of our data
 # and when done, Store the data back in memory
 str X0, [X1]
 
-# We can assess memory at an offset from X1, say 4 bytes
+# Access memory at an offset from X1, say 4 bytes
 ldr X0, [X1, #4]
 str X0, [X1, #4]
 

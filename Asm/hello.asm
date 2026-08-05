@@ -100,9 +100,9 @@ _start:
 	call _printHello
 	
 	; sys_exit(error number) 
-	mov rax, 60				; exit							; rip = x + 5
-	mov rdi, 254			; error code, 0 - no error		; rip = x + 6
-	syscall					;								; rip = x + 7
+	mov rax, 60				; exit
+	mov rdi, 254			; error code, 0 - no error
+	syscall
 	
 _printHello:
 	mov rax, 1				; write							; rip = x
